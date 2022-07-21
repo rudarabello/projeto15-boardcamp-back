@@ -1,9 +1,13 @@
-import React from 'react'
+import express,{json} from 'express';
+import router from './routes/index.js';
+import cors from 'cors';
+import dotenv from 'dotenv';
+dotenv.config();
 
-const app = () => {
-  return (
-    <div>app</div>
-  )
-}
+const app = express();
 
-export default app
+app.use(json());
+app.use(cors());
+app.use(router);
+
+app.listen(process.env.PORT, () => console.log('Runing'));
