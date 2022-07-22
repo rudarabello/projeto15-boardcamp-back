@@ -1,13 +1,15 @@
-import express,{json} from 'express';
-import router from './routes/index.js';
+import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-dotenv.config();
+import categoryRouter from "./routes/categoryRouter.js";
+import customerRouter from "./routes/customerRouter.js";
+import gameRouter from "./routes/gameRouter.js";
 
 const app = express();
+const PORT = process.env.PORT || 5009;
 
-app.use(json());
+dotenv.config();
+app.use(express.json());
 app.use(cors());
-app.use(router);
-
-app.listen(process.env.PORT, () => console.log('Runing'));
+app.use(categoryRouter, customerRouter, gameRouter);
+app.listen(PORT, () => console.log('Runing'));
