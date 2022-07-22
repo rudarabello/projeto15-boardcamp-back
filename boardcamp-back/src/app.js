@@ -6,7 +6,7 @@ import customerRouter from "./routes/customerRouter.js";
 import gameRouter from "./routes/gameRouter.js";
 
 const app = express();
-const PORT = process.env.PORT || 5009;
+const PORT = process.env.PORT || 4000;
 
 dotenv.config();
 app.use(express.json());
