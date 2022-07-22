@@ -2,11 +2,11 @@ import connection from "../databases/postgres.js";
 import { gameModel } from "../models/gameModel.js";
 
 export async function getGames(req, res) {
-    let { name } = req.query;
+    const { name } = req.query;
     try {
         if (name) {
             const { rows: games } = await connection.query(
-                `SELECT * FROM games WHERE name=${name}`);
+                `SELECT * FROM games WHERE name = $1`, [name]);
             return res.status(200).send(games);
         }
         const { rows: games } = await connection.query(
